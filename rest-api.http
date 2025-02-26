@@ -1,0 +1,5 @@
+POST http://localhost:3000/songs?song=Shakira
+
+###
+
+GET http://localhost:3000/songs
