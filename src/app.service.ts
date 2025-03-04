@@ -6,7 +6,7 @@ export class AppService {
     @Inject('CONFIG')
     private config: { port: number; host: string },
   ) {
-    console.log(config.port);
+    console.log('Porta: ', config.port, '\nHost: ', config.host);
   }
   getHello(): string {
     return 'Hello World!';
