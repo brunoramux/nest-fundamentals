@@ -20,3 +20,8 @@ GET http://localhost:3000/songs/32
 ###
 
 DELETE http://localhost:3000/songs/3
+
+###
+
+GET http://localhost:3000/songs?page=2&limit=2
+

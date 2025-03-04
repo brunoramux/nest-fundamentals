@@ -10,6 +10,7 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDto } from './dto/create-song-dto';
@@ -34,9 +35,17 @@ export class SongsController {
   }
 
   @Get()
-  findAll() {
+  findAll(
+    @Query('page', ParseIntPipe) page = 1,
+    @Query('limit', ParseIntPipe) limit = 10,
+  ) {
+    limit = limit > 100 ? 100 : limit;
+    const options = {
+      page,
+      limit,
+    };
     try {
-      return this.songsService.findAll();
+      return this.songsService.paginate(options);
     } catch (error) {
       throw new HttpException(
         'Server Error',
