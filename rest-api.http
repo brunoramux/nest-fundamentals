@@ -25,3 +25,14 @@ DELETE http://localhost:3000/songs/3
 
 GET http://localhost:3000/songs?page=2&limit=2
 
+###
+
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "firstName": "Bruno",
+    "lastName": "Ramos Lemos",
+    "email": "brunolemos@bb.com.br",
+    "password": "123456"
+}

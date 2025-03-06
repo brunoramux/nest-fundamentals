@@ -13,11 +13,11 @@ import {
   Query,
 } from '@nestjs/common';
 import { SongsService } from './songs.service';
-import { CreateSongDto } from './dto/create-song-dto';
+import { CreateSongDto } from './dto/create-song.dto';
 import type { Connection } from 'src/common/constants/connection';
 import type { Song } from './song.entity';
 import type { DeleteResult, UpdateResult } from 'typeorm';
-import type { UpdateSongDto } from './dto/update-song-dto';
+import type { UpdateSongDto } from './dto/update-song.dto';
 
 @Controller('songs')
 export class SongsController {
