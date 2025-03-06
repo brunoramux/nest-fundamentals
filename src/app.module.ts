@@ -9,7 +9,9 @@ import { SongsModule } from './songs/songs.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { Artist } from './artists/artist.entity';
 import { Song } from './songs/song.entity';
+import { User } from './users/user.entity';
 
 const dev = { port: 3000, host: 'localhost' };
 const prod = { port: 80, host: 'bb.com.br' };
@@ -23,8 +25,9 @@ const prod = { port: 80, host: 'bb.com.br' };
       port: 5432,
       username: 'docker',
       password: 'docker',
-      entities: [Song],
+      entities: [Artist, Song, User],
       synchronize: true,
+      logging: true,
     }),
     SongsModule,
   ],

@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "title": "Song 1",
-    "artists": ["Artist 1"],
+    "artists": [1, 2],
     "releaseDate": "2021-02-01",
     "duration": "02:10"
 }
