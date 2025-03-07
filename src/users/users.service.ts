@@ -19,4 +19,11 @@ export class UsersService {
     delete user.password;
     return user;
   }
+
+  async findByEmail(email: string): Promise<User> {
+    return await this.userRepository
+      .createQueryBuilder('user')
+      .where('user.email = :email', { email })
+      .getOne();
+  }
 }
