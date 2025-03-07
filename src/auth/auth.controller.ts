@@ -2,8 +2,8 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { User } from 'src/users/user.entity';
 import { UsersService } from 'src/users/users.service';
-import type { AuthService } from './auth.service';
-import type { LoginDTO } from './dto/login.dto';
+import { AuthService } from './auth.service';
+import { LoginDTO } from './dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -26,6 +26,7 @@ export class AuthController {
     loginDTO: LoginDTO,
   ) {
     const user = await this.authService.login(loginDTO);
-    return { user };
+    delete user.password;
+    return user;
   }
 }
