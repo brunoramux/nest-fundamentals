@@ -1,3 +1,9 @@
+GET http://localhost:3000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiYnJ1bm9sZW1vc0BiYi5jb20uYnIiLCJpYXQiOjE3NDEzODgwNjksImV4cCI6MTc0MTQ3NDQ2OX0.Va_NzsjwD_XAnVwIVLpVfP2eDIJ0Id6ZG1oIUg-uG2I
+
+
+###
+
 POST http://localhost:3000/songs
 Content-Type: application/json
 
