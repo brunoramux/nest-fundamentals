@@ -11,7 +11,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  validate(...args: any[]): unknown {
-    throw new Error('Method not implemented.');
+  validate(payload: { sub: string; email: string }): unknown {
+    return { userId: payload.sub, email: payload.email };
   }
 }

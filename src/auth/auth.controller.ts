@@ -25,8 +25,7 @@ export class AuthController {
     @Body()
     loginDTO: LoginDTO,
   ) {
-    const user = await this.authService.login(loginDTO);
-    delete user.password;
-    return user;
+    const { accessToken } = await this.authService.login(loginDTO);
+    return accessToken;
   }
 }
