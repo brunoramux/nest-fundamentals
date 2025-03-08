@@ -1,9 +1,5 @@
 import { ExecutionContext, createParamDecorator } from '@nestjs/common';
-
-interface userSchema {
-  userId: string;
-  email: string;
-}
+import type { PayloadType } from './types';
 
 export const CurrentUser = createParamDecorator(
   (_: unknown, context: ExecutionContext) => {
@@ -11,6 +7,6 @@ export const CurrentUser = createParamDecorator(
     const request = context.switchToHttp().getRequest();
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    return request.user as userSchema;
+    return request.user as PayloadType;
   },
 );

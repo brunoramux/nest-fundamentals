@@ -14,6 +14,7 @@ import { Song } from './songs/song.entity';
 import { User } from './users/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { ArtistsModule } from './artists/artists.module';
 
 const dev = { port: 3000, host: 'localhost' };
 const prod = { port: 80, host: 'bb.com.br' };
@@ -34,6 +35,7 @@ const prod = { port: 80, host: 'bb.com.br' };
     SongsModule,
     AuthModule,
     UsersModule,
+    ArtistsModule,
   ],
   controllers: [AppController],
   providers: [

@@ -1,4 +1,3 @@
-import { IsString } from 'class-validator';
 import { Song } from 'src/songs/song.entity';
 import { User } from 'src/users/user.entity';
 import {
@@ -17,9 +16,6 @@ export class Artist {
   @OneToOne(() => User)
   @JoinColumn()
   user: User;
-
-  @IsString()
-  name: string;
 
   @ManyToMany(() => Song, (song) => song.artists)
   songs: Song[];
