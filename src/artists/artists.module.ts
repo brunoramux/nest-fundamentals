@@ -8,6 +8,8 @@ import { Artist } from './artist.entity';
   imports: [TypeOrmModule.forFeature([Artist])],
   controllers: [ArtistsController],
   providers: [ArtistsService],
+  // NECESSARIO EXPORTAR UM SERVICE QUANDO ELE FOR UTILIZADO EM OUTRO MODULO
+  // NAO ESQUECA DE IMPORTAR ESTE MODULO DENTRO DO OUTRO MODULO ONDE DESEJA USAR O SERVICE
   exports: [ArtistsService],
 })
 export class ArtistsModule {}

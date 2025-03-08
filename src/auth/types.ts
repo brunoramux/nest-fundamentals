@@ -3,3 +3,7 @@ export interface PayloadType {
   email: string;
   artistId?: number;
 }
+
+export type Enable2FAType = {
+  secret: string;
+};

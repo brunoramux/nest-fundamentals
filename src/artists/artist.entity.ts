@@ -1,6 +1,8 @@
+import { IsString } from 'class-validator';
 import { Song } from 'src/songs/song.entity';
 import { User } from 'src/users/user.entity';
 import {
+  Column,
   Entity,
   JoinColumn,
   ManyToMany,
@@ -12,6 +14,10 @@ import {
 export class Artist {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @IsString()
+  @Column({ nullable: true })
+  name: string;
 
   @OneToOne(() => User)
   @JoinColumn()

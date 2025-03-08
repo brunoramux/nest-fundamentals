@@ -59,3 +59,23 @@ Content-Type: application/json
     "email": "brunolemos@bb.com.br",
     "password": "123456"
 }
+
+###
+
+POST http://localhost:3000/auth/enable-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImVtYWlsIjoiYnJ1bm9sZW1vc0BiYi5jb20uYnIiLCJhcnRpc3RJZCI6NCwiaWF0IjoxNzQxNDQ4MTY1LCJleHAiOjE3NDE1MzQ1NjV9.Se1lpwGZOHlTar06Kv4FD9069tNaWZHRaOw2E7Wh-cw
+
+###
+
+POST http://localhost:3000/auth/validate-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImVtYWlsIjoiYnJ1bm9sZW1vc0BiYi5jb20uYnIiLCJhcnRpc3RJZCI6NCwiaWF0IjoxNzQxNDQ4MTY1LCJleHAiOjE3NDE1MzQ1NjV9.Se1lpwGZOHlTar06Kv4FD9069tNaWZHRaOw2E7Wh-cw
+Content-Type: application/json
+
+{
+    "token": "542729"
+}
+
+###
+
+POST http://localhost:3000/auth/disable-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImVtYWlsIjoiYnJ1bm9sZW1vc0BiYi5jb20uYnIiLCJhcnRpc3RJZCI6NCwiaWF0IjoxNzQxNDQ4MTY1LCJleHAiOjE3NDE1MzQ1NjV9.Se1lpwGZOHlTar06Kv4FD9069tNaWZHRaOw2E7Wh-cw

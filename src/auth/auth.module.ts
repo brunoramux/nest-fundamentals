@@ -14,6 +14,7 @@ import { ArtistsModule } from 'src/artists/artists.module';
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '1d' },
     }),
+    // IMPORTAR MODULO COM SERVICES NECESSARIOS
     ArtistsModule,
   ],
   controllers: [AuthController],

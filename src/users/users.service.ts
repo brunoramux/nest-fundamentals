@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
-import { Repository } from 'typeorm';
+import { Repository, type UpdateResult } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import * as bcrypt from 'bcryptjs';
 
@@ -25,5 +25,32 @@ export class UsersService {
       .createQueryBuilder('user')
       .where('user.email = :email', { email })
       .getOne();
+  }
+
+  async findById(userId: number): Promise<User> {
+    return await this.userRepository
+      .createQueryBuilder('user')
+      .where('user.id = :userId', { userId })
+      .getOne();
+  }
+
+  async updateSecretKey(userId: number, secret: string) {
+    await this.userRepository.update(
+      { id: userId },
+      {
+        twoFASecret: secret,
+        enable2FA: true,
+      },
+    );
+  }
+
+  async disable2FA(userId: number): Promise<UpdateResult> {
+    return await this.userRepository.update(
+      { id: userId },
+      {
+        twoFASecret: '',
+        enable2FA: false,
+      },
+    );
   }
 }
