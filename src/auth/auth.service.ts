@@ -16,7 +16,9 @@ export class AuthService {
     private artistService: ArtistsService,
   ) {}
 
-  async login(loginDTO: LoginDTO): Promise<{ accessToken: string }> {
+  async login(
+    loginDTO: LoginDTO,
+  ): Promise<{ accessToken?: string; validate2FA?: string; message?: string }> {
     const user = await this.userService.findByEmail(loginDTO.email);
 
     if (!user) {
@@ -38,6 +40,14 @@ export class AuthService {
 
     if (artist) {
       payload.artistId = artist.id;
+    }
+
+    if (user.enable2FA && user.twoFASecret) {
+      return {
+        validate2FA: 'http://localhost:3000/auth/validate-2fa',
+        message:
+          'Please send the one time token from your Google Authenticator',
+      };
     }
 
     return {

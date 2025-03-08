@@ -29,9 +29,12 @@ export class AuthController {
     @Body()
     loginDTO: LoginDTO,
   ) {
-    const { accessToken } = await this.authService.login(loginDTO);
+    const { accessToken, message, validate2FA } =
+      await this.authService.login(loginDTO);
     return {
       accessToken: accessToken,
+      message,
+      validate2FA,
     };
   }
 
