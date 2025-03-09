@@ -1,4 +1,11 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  InternalServerErrorException,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { User } from 'src/users/user.entity';
 import { UsersService } from 'src/users/users.service';
@@ -8,6 +15,7 @@ import { JwtAuthGuard } from './jwt-guard';
 import { CurrentUser } from './current-user-decorator';
 import type { PayloadType } from './types';
 import type { ValidateTokenDTO } from './dto/validate-token.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
@@ -21,6 +29,12 @@ export class AuthController {
     @Body()
     userDTO: CreateUserDto,
   ): Promise<User> {
+    const user = await this.userService.findByEmail(userDTO.email);
+    if (user) {
+      throw new InternalServerErrorException(
+        'User with the same e-mail already exits.',
+      );
+    }
     return await this.userService.create(userDTO);
   }
 
@@ -60,5 +74,14 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   disable2FA(@CurrentUser() user: PayloadType) {
     return this.authService.disable2FA(user.userId);
+  }
+
+  @Get('profile')
+  @UseGuards(AuthGuard('bearer'))
+  getProfile(@CurrentUser() user: PayloadType) {
+    return {
+      msg: 'Authenticated with Api Key',
+      user: user.email,
+    };
   }
 }

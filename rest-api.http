@@ -46,7 +46,7 @@ Content-Type: application/json
 {
     "firstName": "Bruno",
     "lastName": "Ramos Lemos",
-    "email": "brunolemos@bb.com.br",
+    "email": "bruno.lemos2@bb.com.br",
     "password": "123456"
 }
 
@@ -79,3 +79,8 @@ Content-Type: application/json
 
 POST http://localhost:3000/auth/disable-2fa
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImVtYWlsIjoiYnJ1bm9sZW1vc0BiYi5jb20uYnIiLCJhcnRpc3RJZCI6NCwiaWF0IjoxNzQxNDcxMDc4LCJleHAiOjE3NDE1NTc0Nzh9.p7uSEIXmIwhhVCMrAaiHT84yw1FG1KDQycEC4DiN2fk
+
+###
+
+GET http://localhost:3000/auth/profile
+Authorization: Bearer b38d7fa7-b2f2-4987-bacb-c170a089c889

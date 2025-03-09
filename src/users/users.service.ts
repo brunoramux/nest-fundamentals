@@ -4,6 +4,7 @@ import { User } from './user.entity';
 import { Repository, type UpdateResult } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import * as bcrypt from 'bcryptjs';
+import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class UsersService {
@@ -13,11 +14,19 @@ export class UsersService {
   ) {}
 
   async create(userDTO: CreateUserDto): Promise<User> {
+    const user = new User();
+    user.firstName = userDTO.firstName;
+    user.lastName = userDTO.lastName;
+    user.email = userDTO.email;
+
     const salt = await bcrypt.genSalt();
-    userDTO.password = await bcrypt.hash(userDTO.password, salt);
-    const user = await this.userRepository.save(userDTO);
-    delete user.password;
-    return user;
+    user.password = await bcrypt.hash(userDTO.password, salt);
+
+    user.apiKey = uuid();
+
+    const userSaved = await this.userRepository.save(user);
+    delete userSaved.password;
+    return userSaved;
   }
 
   async findByEmail(email: string): Promise<User> {
@@ -52,5 +61,14 @@ export class UsersService {
         enable2FA: false,
       },
     );
+  }
+
+  async findByApiKey(apiKey: string): Promise<User> {
+    const user = await this.userRepository
+      .createQueryBuilder('user')
+      .where('user.apiKey = :apiKey', { apiKey })
+      .getOne();
+
+    return user;
   }
 }
