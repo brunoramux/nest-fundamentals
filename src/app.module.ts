@@ -9,29 +9,17 @@ import { SongsModule } from './songs/songs.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { Artist } from './artists/artist.entity';
-import { Song } from './songs/song.entity';
-import { User } from './users/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ArtistsModule } from './artists/artists.module';
+import { dataSourceOptions } from 'db/data-source';
 
 const dev = { port: 3000, host: 'localhost' };
 const prod = { port: 80, host: 'bb.com.br' };
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      database: 'spotify-clone',
-      host: 'localhost',
-      port: 5432,
-      username: 'docker',
-      password: 'docker',
-      entities: [Artist, Song, User],
-      synchronize: true,
-      logging: true,
-    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
     SongsModule,
     AuthModule,
     UsersModule,
